@@ -1,219 +1,341 @@
-<template>
-  <div class="app" :class="{ 'dark-mode': isDarkMode }">
-    <div class="container">
-      <nav class="nav">
-        <div class="nav-right">
-          <div class="nav-header">
-            <h1>Blog | 博客</h1>
-            <div class="theme-switch-wrapper">
-              <button @click="toggleTheme" class="theme-switch" :class="{ 'dark': isDarkMode }">
-                <div class="switch-inner">
-                  <div class="sun-moon">
-                    <div class="sun">
-                      <div class="sun-beams"></div>
-                    </div>
-                    <div class="moon">
-                      <div class="star"></div>
-                      <div class="star small"></div>
-                      <div class="star tiny"></div>
-                    </div>
-                  </div>
-                </div>
-              </button>
-            </div>
-          </div>
-          <router-link to="/" class="nav-item" exact-active-class="active">
-            <span class="icon">🎨</span>
-            开始
-          </router-link>
-          <router-link to="/frontend" class="nav-item">
-            <span class="icon">✏️</span>
-            前端
-          </router-link>
-          <router-link to="/backend" class="nav-item">
-            <span class="icon">🔧</span>
-            后端
-          </router-link>
-          <router-link to="/embedded" class="nav-item">
-            <span class="icon">🔌</span>
-            嵌入式
-          </router-link>
-          <router-link to="/architecture" class="nav-item">
-            <span class="icon">🏗️</span>
-            架构
-          </router-link>
-          <router-link to="/tools" class="nav-item">
-            <span class="icon">🛠️</span>
-            工具
-          </router-link>
-          <router-link to="/projects" class="nav-item">
-            <span class="icon">🚀</span>
-            项目
-          </router-link>
-          <router-link to="/others" class="nav-item">
-            <span class="icon">📚</span>
-            其他
-          </router-link>
-        </div>
-      </nav>
-      <div class="main-content">
-        <router-view></router-view>
-      </div>
-    </div>
-  </div>
-</template>
+<!-- 顶部区域 -->
+    <a-flex class="header-section" :class="{ 'hidden': isSearchHidden }">
+      <!-- 搜索栏 -->
 
-<script setup lang="ts">
-import { ref, watch } from 'vue'
+    </a-flex>
 
-const isDarkMode = ref(localStorage.getItem('theme') === 'dark')
 
-const toggleTheme = () => {
-  isDarkMode.value = !isDarkMode.value
-  localStorage.setItem('theme', isDarkMode.value ? 'dark' : 'light')
+
+.header-section {
+position: sticky;
+top: 0;
+z-index: 100;
+background-color: var(--bg-primary);
+height: 70px;
+display: flex;
+align-items: center;
+border-bottom: 1px solid var(--border-color);
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+visibility: visible;
+transform: translateY(0);
+opacity: 1;
+backdrop-filter: blur(8px);
+background-color: rgba(var(--bg-primary-rgb), 0.95);
+will-change: transform, opacity, visibility;
 }
 
-// 监听主题变化并应用相应的样式
-watch(isDarkMode, (newValue) => {
-  document.documentElement.classList.toggle('dark-theme', newValue)
-}, { immediate: true })
-</script>
-
-<style scoped>
-.app {
-  min-height: 100vh;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  transition: background-color 0.3s, color 0.3s;
+.header-section.hidden {
+transform: translateY(-100%) translateZ(0);
+opacity: 0;
+visibility: hidden;
+pointer-events: none;
+position: fixed;
+width: 100%;
 }
 
-.container {
-  display: flex;
-  min-height: 100vh;
-  gap: 2rem;
+
+
+/* About Section 样式 */
+.about-section {
+width: 100%;
+margin-bottom: 4rem;
+padding-top: 1rem;
 }
 
-.nav {
-  width: 240px;
-  padding: 2rem;
-  background-color: var(--bg-primary);
-  z-index: 100;
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  transition: background-color 0.3s;
+.profile-header {
+display: flex;
+align-items: center;
+gap: 1rem;
+margin-bottom: 2rem;
 }
 
-.nav-right {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
+.avatar {
+width: 80px;
+height: 80px;
+border-radius: 50%;
+object-fit: cover;
 }
 
-.nav-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-  width: 100%;
+.name {
+font-size: 2rem;
+font-weight: 600;
+color: #333;
 }
 
-.nav-header h1 {
-  font-size: 1.5rem;
-  color: var(--text-primary);
-  white-space: nowrap;
+.contact-info {
+margin-bottom: 2rem;
 }
 
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  transition: color 0.3s, background-color 0.3s;
-  white-space: nowrap;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+.info-item {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+margin-bottom: 0.5rem;
+color: #666;
 }
 
-.nav-item:hover {
-  color: #1890ff;
-  background-color: rgba(24, 144, 255, 0.08);
+.social-links {
+display: flex;
+gap: 1rem;
+margin-top: 1rem;
 }
 
-.icon {
-  font-size: 1.2rem;
+.social-icon {
+width: 24px;
+height: 24px;
 }
 
-.nav-item.active {
-  color: #1890ff;
-  background-color: rgba(24, 144, 255, 0.08);
+.status-list {
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+}
+
+.status-item {
+color: #666;
+}
+
+/* Experience Section 样式 */
+.section-title {
+font-size: 1.75rem;
+color: #333;
+margin-bottom: 2rem;
+}
+
+.experience-cards {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 2rem;
+}
+
+.exp-card {
+background: var(--card-bg);
+padding: 2rem;
+border-radius: 12px;
+box-shadow: 0 4px 12px var(--card-shadow);
+transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.card-icon {
+font-size: 2rem;
+margin-bottom: 1rem;
+}
+
+.card-content h3 {
+font-size: 1.25rem;
+color: var(--text-primary);
+margin-bottom: 0.5rem;
+}
+
+.card-content p {
+color: var(--text-secondary);
+line-height: 1.5;
+}
+
+/* Projects Section 样式 */
+.projects-section {
+margin-top: 4rem;
+}
+
+.project-cards {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 2rem;
+}
+
+.project-card {
+background: var(--card-bg);
+padding: 1.5rem;
+border-radius: 12px;
+box-shadow: 0 4px 12px var(--card-shadow);
+display: flex;
+gap: 1rem;
+transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.project-logo {
+width: 48px;
+height: 48px;
+border-radius: 8px;
+}
+
+.project-info h3 {
+font-size: 1.1rem;
+color: var(--text-primary);
+margin-bottom: 0.5rem;
+}
+
+.project-info p {
+color: var(--text-secondary);
+font-size: 0.9rem;
+line-height: 1.5;
 }
 
 /* 响应式设计 */
-@media (max-width: 1024px) {
-  .nav {
-    width: 200px;
-  }
-
-  .main-content {
-    margin-left: 200px;
-    width: calc(100% - 200px);
-  }
-}
-
 @media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .nav {
-    position: relative;
-    width: 100%;
-    padding: 1rem;
-  }
-
-  .main-content {
-    margin-left: 0;
-    width: 100%;
-    padding: 0 1rem;
-  }
+.header-section {
+height: 60px;
 }
 
-/* 深色模式样式 */
-.dark-mode {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-}
-
-.dark-mode .nav {
-  background-color: var(--bg-primary);
-}
-
-.dark-mode .nav-item {
-  color: var(--text-secondary);
-}
-
-.dark-mode .nav-item:hover {
-  color: #64b5f6;
-  background-color: rgba(100, 181, 246, 0.05);
-}
-
-.dark-mode .nav-header h1 {
-  color: var(--text-primary);
+.header-section.hidden {
+transform: translateY(-100%);
 }
 
 .main-content {
-  margin-left: 240px; /* 与导航栏宽度相同 */
-  width: calc(100% - 240px);
-  min-width: 0;
-  padding: 0 2rem;
-  max-width: 1400px;
-  margin: 0 auto 0 240px;
+padding: 1rem;
 }
-</style>
+
+.experience-cards,
+.project-cards {
+grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 1024px) {
+.main-content {
+padding: 2rem;
+}
+}
+
+/* 添加过渡效果 */
+.home-container {
+transition: background-color 0.3s, color 0.3s;
+}
+
+.exp-card,
+.project-card {
+transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* 搜索栏样式 */
+.search-container {
+position: relative;
+z-index: 100;
+width: 100%;
+max-width: 600px;
+margin: 0 auto;
+padding: 0 1rem;
+}
+
+.search-box {
+display: flex;
+align-items: center;
+padding: 0.75rem 1rem;
+background: var(--bg-secondary);
+border: 1px solid var(--border-color);
+border-radius: 8px;
+cursor: pointer;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+height: 46px;
+transform: translateY(0);
+will-change: transform, box-shadow;
+}
+
+.search-box:hover {
+background: var(--card-bg);
+border-color: #1890ff;
+transform: translateY(-1px);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.search-icon {
+font-size: 1.2rem;
+color: var(--text-secondary);
+margin-right: 0.5rem;
+}
+
+.search-placeholder {
+color: var(--text-secondary);
+flex: 1;
+}
+
+.shortcut-hint {
+padding: 0.2rem 0.5rem;
+background: var(--bg-primary);
+border: 1px solid var(--border-color);
+border-radius: 4px;
+font-size: 0.8rem;
+color: var(--text-secondary);
+}
+
+/* 搜索弹窗样式 */
+.search-modal {
+top: 70px;
+}
+
+.search-modal :deep(.ant-modal-content) {
+background: var(--bg-primary);
+padding: 0;
+border-radius: 12px;
+overflow: hidden;
+}
+
+.modal-search {
+display: flex;
+align-items: center;
+padding: 1rem;
+border-bottom: 1px solid var(--border-color);
+}
+
+.modal-search-icon {
+font-size: 1.2rem;
+color: var(--text-secondary);
+margin-right: 0.75rem;
+}
+
+.search-results {
+max-height: 400px;
+overflow-y: auto;
+padding: 1rem;
+}
+
+.result-item {
+padding: 1rem;
+border-radius: 8px;
+cursor: pointer;
+transition: background-color 0.2s ease;
+}
+
+.result-item:hover {
+background-color: var(--bg-secondary);
+}
+
+.result-item h4 {
+margin: 0 0 0.5rem;
+color: var(--text-primary);
+}
+
+.result-item p {
+margin: 0 0 0.5rem;
+color: var(--text-secondary);
+}
+
+.result-meta {
+display: flex;
+justify-content: space-between;
+color: var(--text-secondary);
+font-size: 0.9rem;
+}
+
+.result-tag {
+padding: 0.2rem 0.6rem;
+background: var(--bg-secondary);
+border-radius: 4px;
+}
+
+/* 添加暗色模式支持 */
+.dark-mode .header-section {
+background-color: rgba(var(--bg-primary-dark-rgb), 0.95);
+}
+
+.dark-mode .search-box:hover {
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 在 :root 中添加 RGB 变量 */
+:root {
+--bg-primary-rgb: 255, 255, 255;
+--bg-primary-dark-rgb: 18, 18, 18;
+}
+
+
