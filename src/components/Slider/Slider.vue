@@ -17,7 +17,9 @@
       <span class="nav-text">后端</span>
     </a-menu-item>
     <a-menu-item key="4">
-      <span class="nav-text">工具</span>
+      <router-link to="/home">
+        <span class="nav-text">工具</span>
+      </router-link>
     </a-menu-item>
     <a-menu-item key="5">
       <span class="nav-text">日志</span>
