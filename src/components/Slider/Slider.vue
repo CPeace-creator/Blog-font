@@ -35,14 +35,10 @@
 
 <script setup lang="ts">
 import {
-  CrownTwoTone ,
-  DesktopOutlined,
-  UserOutlined,
-  TeamOutlined,
-  FileOutlined,
+  CrownTwoTone
 } from '@ant-design/icons-vue';
 import { ref } from 'vue';
-const selectedKeys = ref<string[]>(['4']);
+const selectedKeys = ref<string[]>(['1']);
 </script>
 
 <style scoped>
