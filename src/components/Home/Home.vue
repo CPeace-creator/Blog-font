@@ -226,7 +226,7 @@ const skillCategories = [
   },
   {
     title:"后端",
-    skills:["Java","SpringCloud","MySQL"]
+    skills:["SSM","SpringCloud","MySQL"]
   },
   {
     title:"语言",
