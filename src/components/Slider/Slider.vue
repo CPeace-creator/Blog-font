@@ -5,7 +5,7 @@
         Blog | 博客
       </a-typography-title>
     </div>
-    
+
     <a-menu
       v-model:selectedKeys="selectedKeys"
       mode="vertical"
@@ -50,7 +50,7 @@
 
     <div class="footer">
       <a-divider style="margin: 8px 0" />
-      
+
       <div class="stats">
         <a-row :gutter="[8, 8]">
           <a-col :span="8">
@@ -64,27 +64,22 @@
           </a-col>
         </a-row>
       </div>
-      
+
       <div class="social-links">
         <a-space>
           <a-tooltip title="GitHub">
-            <a href="https://github.com" target="_blank">
+            <a href="https://github.com/CPeace-creator" target="_blank">
               <GithubOutlined />
             </a>
           </a-tooltip>
           <a-tooltip title="掘金">
-            <a href="https://juejin.cn" target="_blank">
-              <svg-icon icon-name="icon-juejin" />
-            </a>
-          </a-tooltip>
-          <a-tooltip title="CSDN">
-            <a href="https://csdn.net" target="_blank">
-              <svg-icon icon-name="icon-csdn" />
+            <a href="https://juejin.cn/user/2722834407521038" target="_blank">
+              <svg-icon icon-name="icon-juejin" style="font-size: 0.5em" />
             </a>
           </a-tooltip>
         </a-space>
       </div>
-      
+
       <div class="copyright">
         <a-typography-text type="secondary" style="font-size: 12px">
           © 2024 湘江中路的博客
@@ -100,9 +95,9 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { 
+import {
   GithubOutlined,
-  ClockCircleOutlined 
+  ClockCircleOutlined
 } from '@ant-design/icons-vue';
 import SvgIcon from "../SvgIcon/SvgIcon.vue";
 
@@ -201,11 +196,11 @@ onMounted(() => {
   .logo-item {
     padding: 16px 0 !important;
   }
-  
+
   .icon {
     font-size: 2em;
   }
-  
+
   .nav-text {
     padding: 12px;
   }
@@ -213,15 +208,15 @@ onMounted(() => {
   .footer {
     padding: 12px;
   }
-  
+
   .stats {
     margin-bottom: 12px;
   }
-  
+
   .social-links {
     margin-bottom: 12px;
   }
-  
+
   .social-links a {
     font-size: 18px;
     padding: 6px;
@@ -232,11 +227,11 @@ onMounted(() => {
   .header {
     padding: 8px;
   }
-  
+
   .logo-item {
     padding: 12px 0 !important;
   }
-  
+
   .nav-text {
     padding: 8px;
     font-size: 14px;
@@ -245,15 +240,15 @@ onMounted(() => {
   .footer {
     padding: 8px;
   }
-  
+
   .stats {
     margin-bottom: 8px;
   }
-  
+
   .social-links {
     margin-bottom: 8px;
   }
-  
+
   .social-links a {
     font-size: 16px;
     padding: 4px;
