@@ -1,31 +1,7 @@
 <template>
   <a-layout-content class="home-container">
-    <a-affix>
-      <a-layout-header class="header">
-        <a-row justify="center" align="middle">
-          <a-col :span="24" :md="16" :lg="14" :xl="12">
-            <a-space align="center" :size="16">
-              <a-input
-                placeholder="搜索文章..."
-                class="search-input"
-                readonly
-                @click="showSearchModal"
-              >
-                <template #prefix>
-                  <SearchOutlined />
-                </template>
-                <template #suffix>
-                  <a-typography-text type="secondary" class="shortcut-hint">
-                    {{ isMac ? '⌘' : 'Shift' }} + K
-                  </a-typography-text>
-                </template>
-              </a-input>
-            </a-space>
-          </a-col>
-        </a-row>
-      </a-layout-header>
-    </a-affix>
-
+<!--    搜索栏-->
+    <Search></Search>
     <!-- 主要内容区域 -->
     <a-layout class="main-content">
       <a-row :gutter="[24, 24]">
@@ -245,16 +221,6 @@ const avatarUrl = ref('src/assets/my.jpg')
   flex-direction: column;
   overflow: hidden;
 }
-
-
-.shortcut-hint {
-  padding: 2px 6px;
-  background: #f5f5f5;
-  border-radius: 4px;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.45);
-}
-
 
 .skill-category h4 {
   font-size: 0.9rem;
