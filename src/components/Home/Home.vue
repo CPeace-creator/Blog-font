@@ -1,6 +1,6 @@
 <template>
   <a-layout-content class="home-container">
-<!--    搜索栏-->
+    <!-- 搜索栏 -->
     <Search></Search>
     <!-- 主要内容区域 -->
     <a-layout class="main-content">
@@ -10,7 +10,7 @@
           <a-affix :offset-top="88">
             <a-space direction="vertical" size="middle" style="width: 100%">
               <!-- 个人信息卡片 -->
-              <a-card :bordered="false">
+              <a-card :bordered="false" class="left-card">
                 <a-space direction="vertical" size="large">
                   <a-row align="middle" :gutter="[16, 16]">
                     <a-col flex="none">
@@ -53,21 +53,21 @@
 
                   <a-space direction="vertical">
                     <a-typography-text>💻 正在努力成为独立开发者</a-typography-text>
-                    <a-typography-text>💡 有创意点子就会尝试</a-typography-text>
-                    <a-typography-text>🏠 分享日常博客</a-typography-text>
+                    <a-typography-text>💡 每天都会产生奇特的想法</a-typography-text>
+                    <a-typography-text>🏠 分享生活日常</a-typography-text>
                   </a-space>
                 </a-space>
               </a-card>
 
               <!-- 技能卡片 -->
-              <a-card :bordered="false" title="技能 & 工具">
+              <a-card :bordered="false" title="技能 & 工具" class="left-card">
                 <a-space direction="vertical" size="middle">
                   <div v-for="(category, index) in skillCategories" :key="index">
                     <a-typography-title :level="5">{{ category.title }}</a-typography-title>
                     <a-space wrap>
                       <a-tag v-for="skill in category.skills"
-                        :key="skill"
-                        :color="category.color"
+                             :key="skill"
+                             :color="category.color"
                       >
                         {{ skill }}
                       </a-tag>
@@ -82,7 +82,7 @@
         <!-- 右侧内容区域 -->
         <a-col :xs="24" :sm="24" :md="16" :lg="18">
           <!-- Experience 部分 -->
-          <a-card :bordered="false" title="What have I been doing" class="content-card">
+          <a-card :bordered="false" title="What have I been doing" class="right-card">
             <a-row :gutter="[16, 16]">
               <a-col :xs="24" :sm="24" :md="12" :lg="8" v-for="(exp, index) in experiences" :key="index">
                 <a-card hoverable>
@@ -99,10 +99,10 @@
           </a-card>
 
           <!-- Projects 部分 -->
-          <a-card :bordered="false" title="Projects" class="content-card" style="margin-top: 24px">
+          <a-card :bordered="false" title="Projects" class="projects-card" style="margin-top: 24px">
             <a-list
-              :grid="{ gutter: 16, xs: 1, sm: 1, md: 2, lg: 3, xl: 3 }"
-              :data-source="projects"
+                :grid="{ gutter: 16, xs: 1, sm: 1, md: 2, lg: 3, xl: 3 }"
+                :data-source="projects"
             >
               <template #renderItem="{ item }">
                 <a-list-item>
@@ -123,9 +123,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted } from 'vue'
-import { GithubOutlined, WeiboOutlined, WechatOutlined, EnvironmentOutlined, MailOutlined, SearchOutlined } from '@ant-design/icons-vue'
-
+import { computed, ref, onMounted } from 'vue';
+import {
+  GithubOutlined,
+  WeiboOutlined,
+  WechatOutlined,
+  EnvironmentOutlined,
+  MailOutlined,
+  SearchOutlined
+} from '@ant-design/icons-vue';
 
 // 示例数据
 const experiences = [
@@ -173,43 +179,24 @@ const projects = [
     title: '极物圈社区商城',
     description: '极物圈,是一个满足,O咖天、闲置、社区功能于一体的平台。'
   },
-  {
-    logo: '',
-    title: '极物圈社区商城',
-    description: '极物圈,是一个满足,O咖天、闲置、社区功能于一体的平台。'
-  },
-  {
-    logo: '',
-    title: '极物圈社区商城',
-    description: '极物圈,是一个满足,O咖天、闲置、社区功能于一体的平台。'
-  },
-  {
-    logo: '',
-    title: '极物圈社区商城',
-    description: '极物圈,是一个满足,O咖天、闲置、社区功能于一体的平台。'
-  },
-  {
-    logo: '',
-    title: '极物圈社区商城',
-    description: '极物圈,是一个满足,O咖天、闲置、社区功能于一体的平台。'
-  },
-  // ... 其他项目数据
-]
+];
+
 const skillCategories = [
   {
-    title:"前端",
-    skills:["Vue","JavaScript","Flutter","NodeJs"]
+    title: "前端",
+    skills: ["Vue", "JavaScript", "Flutter", "NodeJs"]
   },
   {
-    title:"后端",
-    skills:["SSM","SpringCloud","MySQL"]
+    title: "后端",
+    skills: ["SSM", "SpringCloud", "MySQL"]
   },
   {
-    title:"语言",
-    skills:["Java","Python","GoLang","Dart"]
+    title: "语言",
+    skills: ["Java", "Python", "GoLang", "Dart"]
   },
-]
-const avatarUrl = ref('src/assets/my.jpg')
+];
+
+const avatarUrl = ref('src/assets/my.jpg');
 </script>
 
 <style scoped>
@@ -222,12 +209,22 @@ const avatarUrl = ref('src/assets/my.jpg')
   overflow: hidden;
 }
 
-.skill-category h4 {
-  font-size: 0.9rem;
-  color: rgba(0, 0, 0, 0.65);
-  margin: 0;
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  height: calc(100vh - 70px);
+  padding: 24px;
 }
 
+.left-card, .right-card {
+  height: calc(50vh - 110px); /* 设置卡片高度为视口高度的一半减去一些间距 */
+  overflow-y: auto; /* 如果内容超出高度，显示滚动条 */
+}
+
+.projects-card {
+  height: calc(50vh - 120px); /* 设置 Projects 卡片高度 */
+  overflow-y: auto; /* 如果内容超出高度，显示滚动条 */
+}
 
 :deep(.ant-tag) {
   margin: 0;
@@ -252,12 +249,5 @@ const avatarUrl = ref('src/assets/my.jpg')
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.25);
-}
-
-.main-content {
-  flex: 1;
-  overflow-y: auto;
-  height: calc(100vh - 70px);
-  padding: 24px;
 }
 </style>
