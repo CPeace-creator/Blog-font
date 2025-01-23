@@ -14,7 +14,7 @@ const routes: Array<any> = [
   {
     path: '/qianDuan',
     name: 'QianDuan',
-    component: () => import('../components/Home/Home.vue')
+    component: () => import('../views/QianDuan/index.vue')
   },
   {
     path: '/tools',

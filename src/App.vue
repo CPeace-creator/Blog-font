@@ -1,29 +1,40 @@
 <template>
   <a-layout>
-    <a-layout-sider 
-      class="siderStyle" 
-      :width="240"
-      :style="{
-        overflow: 'auto',
-        height: '100vh',
-        position: 'fixed',
-        left: 0,
-        top: 0,
-        bottom: 0
-      }"
-    >
-      <Slider />
-    </a-layout-sider>
-    <a-layout>
-      <a-layout style="margin-left: 240px">
-        <router-view />
+    <template v-if="!hideSlider">
+      <a-layout-sider 
+        class="siderStyle" 
+        :width="240"
+        :style="{
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          bottom: 0
+        }"
+      >
+        <Slider />
+      </a-layout-sider>
+      <a-layout>
+        <a-layout :style="{ marginLeft: '240px' }">
+          <router-view />
+        </a-layout>
       </a-layout>
-    </a-layout>
+    </template>
+    <template v-else>
+      <router-view />
+    </template>
   </a-layout>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
+const hideSlider = computed(() => {
+  return route.path === '/qianDuan'
+})
 </script>
 
 <style scoped>
